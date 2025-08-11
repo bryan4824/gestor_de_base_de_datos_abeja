@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulador de Gestor de BD</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='/abeja.ico') }}">
+</head>
+<body>
+    <div class="container">
+        <img class="logo" src="{{ url_for('static', filename='abeja_logo.png') }}" alt="Descripción de la imagen">
+        <h1>Gestor de Base de Datos</h1>
+
+        <div class="db-manager">
+            <h2>Bases de Datos</h2>
+            <div class="db-list">
+                {% for db in databases %}
+                <button class="db-btn" data-db-name="{{ db }}">{{ db }}</button>
+                {% endfor %}
+            </div>
+            <div class="db-actions">
+                <input class="db-actions-input" type="text" id="db-input" placeholder="Nombre de la nueva DB">
+                <button class="db-actions-input-button" onclick="crearDB()">Crear DB</button>
+            </div>
+        </div>
+
+        <div class="query-editor">
+            <h2>Consultas</h2>
+            <p id="current-db-info">Selecciona una base de datos para empezar</p>
+            <textarea id="query-input" rows="10" placeholder="Escribe tu sentencia SQL aquí..."></textarea>
+            <button class="button-doing_accion" onclick="ejecutar()">Ejecutar</button>
+            <button class="button-doing_accion2" onclick="limpiarResultados()">Limpiar</button>
+        </div>
+
+        <div class="results-container">
+            <h2>Resultados</h2>
+            <pre id="message-display"></pre>
+            <div id="results-table"></div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
